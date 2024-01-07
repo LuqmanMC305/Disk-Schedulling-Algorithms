@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void printRes(int &seekCount, vector<int> &seekSequence, int requestSize, int &diskSize, vector<int> &eachSeekDistance);
+void printRes(int &seekCount, vector<int> &seekSequence, int requestSize, int &diskSize, vector<int> &eachSeekDistance, int worstCase);
 
 void CLOOK(vector<int> requests, int diskSize, int head)
 {
@@ -67,17 +67,19 @@ void CLOOK(vector<int> requests, int diskSize, int head)
         head = currTrack;
     }
 
-
-    printRes(seekCount, seekSequence, requests.size(), diskSize, eachSeekDistance);
+    int worstCaseSeekCount = abs(right.back() - left[0]);
+    
+    printRes(seekCount, seekSequence, requests.size(), diskSize, eachSeekDistance, worstCaseSeekCount);
 
 }
 
-void printRes(int &seekCount, vector<int> &seekSequence, int requestSize, int &diskSize, vector<int> &eachSeekDistance)
+void printRes(int &seekCount, vector<int> &seekSequence, int requestSize, int &diskSize, vector<int> &eachSeekDistance, int worstCase)
 {
     double avgSeekTime = double(seekCount) / requestSize;
 
     cout << "The seek count is: " << seekCount << endl;
     cout << "The average seek time is: " << avgSeekTime << endl;
+    cout << "The worst-case seek time is: " << worstCase << endl;
     cout << "The seek sequence is: ";
 
     for(int &seq : seekSequence)
@@ -97,7 +99,7 @@ void printRes(int &seekCount, vector<int> &seekSequence, int requestSize, int &d
 int main()
 {    
     srand(time(0));
-    int requests = 10;
+    int requests = 100;
     vector<int> requestList(requests);
 
     for(int &index : requestList)
@@ -105,9 +107,9 @@ int main()
         index = rand() % 200;
     }
 
-    vector<int> requestSample = {176, 79, 34, 60, 92, 11, 41, 114};
+    vector<int> requestSample = {98, 183, 40, 122, 10, 124, 65};
 
-    int maxCylinderDiskSize = 200, startHead = 50;
+    int maxCylinderDiskSize = 200, startHead = 53;
     CLOOK(requestSample, maxCylinderDiskSize, startHead);
     
           

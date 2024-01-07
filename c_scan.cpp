@@ -104,7 +104,7 @@ void printRes(int &seekCount, vector<int> &seekSequence, int requestSize, int &d
 int main()
 {    
     srand(time(0));
-    int requests = 10;
+    int requests = 100;
     vector<int> requestList(requests);
 
     for(int &index : requestList)
@@ -112,9 +112,9 @@ int main()
         index = rand() % 200;
     }
 
-    vector<int> requestSample = {176, 79, 34, 60, 92, 11, 41, 114};
+    vector<int> requestSample = {98, 183, 40, 122, 10, 124, 65};
 
-    int maxCylinderDiskSize = 200, startHead = 50;
+    int maxCylinderDiskSize = 200, startHead = 53;
     CSCAN(requestSample, maxCylinderDiskSize, startHead);
     
           
