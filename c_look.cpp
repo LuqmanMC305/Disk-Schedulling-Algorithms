@@ -99,7 +99,10 @@ void printRes(int &seekCount, vector<int> &seekSequence, int requestSize, int &d
 int main()
 {    
     srand(time(0));
-    int requests = 100;
+    int requests;
+    cout <<"Enter How Many Random Requests: ";
+    cin >> requests;
+
     vector<int> requestList(requests);
 
     for(int &index : requestList)
@@ -110,7 +113,7 @@ int main()
     vector<int> requestSample = {98, 183, 40, 122, 10, 124, 65};
 
     int maxCylinderDiskSize = 200, startHead = 53;
-    CLOOK(requestSample, maxCylinderDiskSize, startHead);
+    CLOOK(requestList, maxCylinderDiskSize, startHead);
     
           
 }
